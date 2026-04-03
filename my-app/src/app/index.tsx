@@ -11,8 +11,8 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Text>HI MADAN</Text>
-      <Link href={"./about"}>Go to About</Link>
+      <Text className="text-red-500">HI MADAN</Text>
+      
       
     </View>
   );
