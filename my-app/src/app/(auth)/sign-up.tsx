@@ -82,7 +82,7 @@ export default function Page() {
           <Text style={styles.error}>{errors.fields.code.message}</Text>
         )}
         <Pressable
-          style={({ pressed }) => [
+          style={( {pressed}) => [
             styles.button,
             fetchStatus === 'fetching' && styles.buttonDisabled,
             pressed && styles.buttonPressed,
