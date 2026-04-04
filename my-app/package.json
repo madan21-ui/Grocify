@@ -44,7 +44,7 @@
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
-    "@react-native/babel-preset": "^0.75.0",
+    "@react-native/babel-preset": "^0.75.5",
     "@types/react": "~19.2.2",
     "typescript": "~5.9.2"
   },
