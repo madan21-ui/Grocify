@@ -25,6 +25,7 @@
        "bundler": "metro"
     },
     "plugins": [
+      "@clerk/expo",
       "expo-router",
       [
         "expo-splash-screen",
