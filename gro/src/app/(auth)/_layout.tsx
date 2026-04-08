@@ -1,16 +1,17 @@
-import { useAuth } from '@clerk/expo'
-import { Redirect, Stack } from 'expo-router'
+import { ClerkProvider } from '@clerk/expo'
+import { tokenCache } from '@clerk/expo/token-cache'
+import { Slot } from 'expo-router'
 
-export default function AuthRoutesLayout() {
-  const { isSignedIn, isLoaded } = useAuth()
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!
 
-  if (!isLoaded) {
-    return null
-  }
+if (!publishableKey) {
+  throw new Error('Add your Clerk Publishable Key to the .env file')
+}
 
-  if (isSignedIn) {
-    return <Redirect href={'/'} />
-  }
-
-  return <Stack />
+export default function RootLayout() {
+  return (
+    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+      <Slot />
+    </ClerkProvider>
+  )
 }
