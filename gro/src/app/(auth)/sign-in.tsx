@@ -1,13 +1,12 @@
 import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
-import { useAuth, useSignUp } from '@clerk/expo'
+import { useSignIn } from '@clerk/expo'
 import { type Href, Link, useRouter } from 'expo-router'
 import React from 'react'
 import { Pressable, StyleSheet, TextInput, View } from 'react-native'
 
 export default function Page() {
-  const { signUp, errors, fetchStatus } = useSignUp()
-  const { isSignedIn } = useAuth()
+  const { signIn, errors, fetchStatus } = useSignIn()
   const router = useRouter()
 
   const [emailAddress, setEmailAddress] = React.useState('')
@@ -15,7 +14,7 @@ export default function Page() {
   const [code, setCode] = React.useState('')
 
   const handleSubmit = async () => {
-    const { error } = await signUp.password({
+    const { error } = await signIn.password({
       emailAddress,
       password,
     })
@@ -24,16 +23,47 @@ export default function Page() {
       return
     }
 
-    if (!error) await signUp.verifications.sendEmailCode()
+    if (signIn.status === 'complete') {
+      await signIn.finalize({
+        navigate: ({ session, decorateUrl }) => {
+          if (session?.currentTask) {
+            // Handle pending session tasks
+            // See https://clerk.com/docs/guides/development/custom-flows/authentication/session-tasks
+            console.log(session?.currentTask)
+            return
+          }
+
+          const url = decorateUrl('/')
+          if (url.startsWith('http')) {
+            window.location.href = url
+          } else {
+            router.push(url as Href)
+          }
+        },
+      })
+    } else if (signIn.status === 'needs_second_factor') {
+      // See https://clerk.com/docs/guides/development/custom-flows/authentication/multi-factor-authentication
+    } else if (signIn.status === 'needs_client_trust') {
+      // For other second factor strategies,
+      // see https://clerk.com/docs/guides/development/custom-flows/authentication/client-trust
+      const emailCodeFactor = signIn.supportedSecondFactors.find(
+        (factor) => factor.strategy === 'email_code',
+      )
+
+      if (emailCodeFactor) {
+        await signIn.mfa.sendEmailCode()
+      }
+    } else {
+      // Check why the sign-in is not complete
+      console.error('Sign-in attempt not complete:', signIn)
+    }
   }
 
   const handleVerify = async () => {
-    await signUp.verifications.verifyEmailCode({
-      code,
-    })
-    if (signUp.status === 'complete') {
-      await signUp.finalize({
-        // Redirect the user to the home page after signing up
+    await signIn.mfa.verifyEmailCode({ code })
+
+    if (signIn.status === 'complete') {
+      await signIn.finalize({
         navigate: ({ session, decorateUrl }) => {
           if (session?.currentTask) {
             // Handle pending session tasks
@@ -51,23 +81,15 @@ export default function Page() {
         },
       })
     } else {
-      // Check why the sign-up is not complete
-      console.error('Sign-up attempt not complete:', signUp)
+      // Check why the sign-in is not complete
+      console.error('Sign-in attempt not complete:', signIn)
     }
   }
 
-  if (signUp.status === 'complete' || isSignedIn) {
-    return null
-  }
-
-  if (
-    signUp.status === 'missing_requirements' &&
-    signUp.unverifiedFields.includes('email_address') &&
-    signUp.missingFields.length === 0
-  ) {
+  if (signIn.status === 'needs_client_trust') {
     return (
       <ThemedView style={styles.container}>
-        <ThemedText type="title" style={styles.title}>
+        <ThemedText type="title" style={[styles.title, { fontSize: 24, fontWeight: 'bold' }]}>
           Verify your account
         </ThemedText>
         <TextInput
@@ -94,9 +116,15 @@ export default function Page() {
         </Pressable>
         <Pressable
           style={({ pressed }) => [styles.secondaryButton, pressed && styles.buttonPressed]}
-          onPress={() => signUp.verifications.sendEmailCode()}
+          onPress={() => signIn.mfa.sendEmailCode()}
         >
           <ThemedText style={styles.secondaryButtonText}>I need a new code</ThemedText>
+        </Pressable>
+        <Pressable
+          style={({ pressed }) => [styles.secondaryButton, pressed && styles.buttonPressed]}
+          onPress={() => signIn.reset()}
+        >
+          <ThemedText style={styles.secondaryButtonText}>Start over</ThemedText>
         </Pressable>
       </ThemedView>
     )
@@ -105,7 +133,7 @@ export default function Page() {
   return (
     <ThemedView style={styles.container}>
       <ThemedText type="title" style={styles.title}>
-        Sign up
+        Sign in
       </ThemedText>
 
       <ThemedText style={styles.label}>Email address</ThemedText>
@@ -118,8 +146,8 @@ export default function Page() {
         onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
         keyboardType="email-address"
       />
-      {errors.fields.emailAddress && (
-        <ThemedText style={styles.error}>{errors.fields.emailAddress.message}</ThemedText>
+      {errors.fields.identifier && (
+        <ThemedText style={styles.error}>{errors.fields.identifier.message}</ThemedText>
       )}
       <ThemedText style={styles.label}>Password</ThemedText>
       <TextInput
@@ -142,20 +170,17 @@ export default function Page() {
         onPress={handleSubmit}
         disabled={!emailAddress || !password || fetchStatus === 'fetching'}
       >
-        <ThemedText style={styles.buttonText}>Sign up</ThemedText>
+        <ThemedText style={styles.buttonText}>Continue</ThemedText>
       </Pressable>
       {/* For your debugging purposes. You can just console.log errors, but we put them in the UI for convenience */}
       {errors && <ThemedText style={styles.debug}>{JSON.stringify(errors, null, 2)}</ThemedText>}
 
       <View style={styles.linkContainer}>
-        <ThemedText>Already have an account? </ThemedText>
-        <Link href="/sign-in">
-          <ThemedText type="link">Sign in</ThemedText>
+        <ThemedText>Don't have an account? </ThemedText>
+        <Link href="/sign-up">
+          <ThemedText type="link">Sign up</ThemedText>
         </Link>
       </View>
-
-      {/* Required for sign-up flows. Clerk's bot sign-up protection is enabled by default */}
-      <View nativeID="clerk-captcha" />
     </ThemedView>
   )
 }
