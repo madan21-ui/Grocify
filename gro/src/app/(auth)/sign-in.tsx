@@ -9,10 +9,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 export default function SignInScreen() {
  const { handleSocialAuth , loadingStrategy } = useSocialAuth();
 
- return (
-  <SafeAreaView className="bg-purple-500 flex-1 items-center justify-center">
+ return(
+  <SafeAreaView className="flex-1 bg-red-500 items-center justify-center">
     <Text>
-      Heyy
+      Hello
     </Text>
   </SafeAreaView>
  );
