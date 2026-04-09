@@ -1,8 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // NOTE: Update this to include the paths to all files that contain Nativewind classes.
-  content: ["./App.tsx", "./components/**/*.{js,jsx,ts,tsx}"],
-  presets: [require("nativewind/preset")],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],  presets: [require("nativewind/preset")],
   darkMode: "media", // it should follow the system theme, but you can also set it to "class" and manage the theme manually by adding a "dark" class to the root element.
   theme: {
     extend: {

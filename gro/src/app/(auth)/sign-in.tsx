@@ -2,9 +2,19 @@ import { AuthView } from '@clerk/expo/native'
 import { useAuth } from '@clerk/expo'
 import { useRouter } from 'expo-router'
 import { useEffect } from 'react'
+import { View , Text } from 'react-native';
+import useSocialAuth from '@/hooks/useSocialAuth';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function SignInScreen() {
- const {handleSocialAuth , LoadingStrategy} = useSocialAuth()
+ const { handleSocialAuth , loadingStrategy } = useSocialAuth();
 
-  return <AuthView mode="signInOrUp" />
+ return (
+  <SafeAreaView className="bg-purple-500 flex-1 items-center justify-center">
+    <Text>
+      Heyy
+    </Text>
+  </SafeAreaView>
+ );
+
 }
