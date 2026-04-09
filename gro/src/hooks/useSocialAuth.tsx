@@ -7,6 +7,7 @@ const useSocialAuth = () => {
     const { startSSOFlow } = useSSO();
     
     const handleSocialAuth = async (strategy: "oauth_google" | "oauth_github" | "oauth_apple") => {
+        if (loadingStrategy) return 
         setLoadingStrategy(strategy)
         try {
             const { createdSessionId, setActive } = await startSSOFlow({strategy});
@@ -20,5 +21,11 @@ const useSocialAuth = () => {
             Alert.alert("Authentication Error", "An error occurred during social authentication. Please try again.");
             
         }
+            finally {  
+            setLoadingStrategy(null);
+            }
     }
+    return { handleSocialAuth, loadingStrategy };
     }
+
+    export default useSocialAuth;
