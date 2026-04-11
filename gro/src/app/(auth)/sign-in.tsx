@@ -13,7 +13,7 @@ export default function SignInScreen() {
   <View>
 
     <Text>
-      Hello
+      HI
     </Text>
   </View>
  );
