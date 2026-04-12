@@ -11,7 +11,7 @@ export default function SignInScreen() {
 
  return(
   
-    <SafeAreaView className="flex-1 items-center justify-center bg-slate-600">
+    <SafeAreaView className='bg-red-700'>
         <Text > Madan </Text>
     </SafeAreaView>
  );
