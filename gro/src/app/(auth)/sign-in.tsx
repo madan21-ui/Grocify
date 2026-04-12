@@ -11,8 +11,8 @@ export default function SignInScreen() {
 
  return(
   
-    <SafeAreaView>
-        <Text> Madan </Text>
+    <SafeAreaView className='text-red-400'>
+        <Tex> Madan </Text>
     </SafeAreaView>
  );
 }
