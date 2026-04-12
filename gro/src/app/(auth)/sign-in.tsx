@@ -10,8 +10,9 @@ export default function SignInScreen() {
  const { handleSocialAuth , loadingStrategy } = useSocialAuth();
 
  return(
-  <SafeAreaView style={{ flex: 1 }}>
-    
+  
+    <SafeAreaView>
+        <Text> Madan </Text>
+    </SafeAreaView>
  );
-
 }
