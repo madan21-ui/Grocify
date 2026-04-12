@@ -45,7 +45,7 @@ export default function SignInScreen() {
           </Text>
         </View>
 
-        <Text className="mt-2 text-center text-sm leading-6 text-muted-foreground">
+        <Text className="mt-2 text-center text-sm leading-3 text-muted-foreground">
           Choose a social provider and jump right into your personalized grocery experience.
         </Text>
 
