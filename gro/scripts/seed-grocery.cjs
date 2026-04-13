@@ -1,6 +1,6 @@
 const { neon } = require("@neondatabase/serverless");
 const crypto = require("node:crypto");
-
+require('dotenv').config();
 const databaseUrl = process.env.DATABASE_URL;
 
 if (!databaseUrl) {
