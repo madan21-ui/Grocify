@@ -16,12 +16,17 @@ export default function TabsLayout() {
   return <NativeTabs>
     <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
+        <NativeTabs.Trigger.Icon sf="list.bullet.clipboard" md="list" />
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="planner">
         <NativeTabs.Trigger.Icon sf="plus.circle" md="add" /> //md for android and sf for ios
-        <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>Planner</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="insight">
+        <NativeTabs.Trigger.Icon sf="chart.bar" md="analytics" /> //md for android and sf for ios
+        <NativeTabs.Trigger.Label>Insights</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
   </NativeTabs>
 }
