@@ -25,7 +25,8 @@ export default function TabsLayout() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="insight">
-        <NativeTabs.Trigger.Icon sf="chart.bar" md="analytics" /> //md for android and sf for ios
+        <NativeTabs.Trigger.Icon sf="chart.bar" 
+        md="analytics"/> //md for android and sf for ios
         <NativeTabs.Trigger.Label>Insights</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
   </NativeTabs>
