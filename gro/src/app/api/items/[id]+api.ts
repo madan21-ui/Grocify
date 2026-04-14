@@ -17,7 +17,6 @@ export async function PATCH(_request: Request, { id }: { id: string }) {
     }
 };
 
-
 export async function DELETE(_request: Request, { id }: { id: string } ) {
     try {
         await deleteGroceryItem(id);
