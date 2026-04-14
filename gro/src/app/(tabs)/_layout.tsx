@@ -20,7 +20,7 @@ export default function TabsLayout() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="planner">
-        <NativeTabs.Trigger.Icon sf="plus.circle" md="add" /> //md for android and sf for ios
+        <NativeTabs.Trigger.Icon sf={{ default: "plus.circle" , selected : "plus.circle.fill" }} /> //md for android and sf for ios
         <NativeTabs.Trigger.Label>Planner</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
 

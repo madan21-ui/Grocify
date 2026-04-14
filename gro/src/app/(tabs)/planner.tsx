@@ -3,8 +3,8 @@ import React from 'react'
 
 const plannerScreen = () => {
   return (
-    <View>
-      <Text>plannerScreen</Text>
+    <View className='flex-1 items-center justify-center text-c'>
+      <Text >plannerScreen</Text>
     </View>
   )
 }
