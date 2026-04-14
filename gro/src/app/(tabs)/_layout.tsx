@@ -9,6 +9,8 @@ export default function TabsLayout() {
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
   const tabTinColor = isDark ? "hsl(142 70% 54%)" : "hsl(147 75% 33%)";
+  
+
   if (!isLoaded) {
     return null
   }
@@ -21,7 +23,6 @@ export default function TabsLayout() {
     <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="list.bullet.clipboard" md="list" />
-        <NativeTabs.Trigger.Badge>9+</NativeTabs.Trigger.Badge>
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="planner">
