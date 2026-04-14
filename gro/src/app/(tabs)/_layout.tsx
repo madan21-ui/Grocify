@@ -1,12 +1,12 @@
 import { useAuth } from '@clerk/expo'
 import { Redirect, Stack } from 'expo-router'
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
-import { useColorScheme } from 'react-native';
+import { useColorScheme } from "nativewind";
 
 export default function TabsLayout() {
   const { isSignedIn, isLoaded } = useAuth();
 
-  const {colorScheme} = useColorScheme();
+  const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
   const tabTinColor = isDark ? "hsl(142 70% 54%)" : "hsl(147 75% 33%)";
   if (!isLoaded) {
