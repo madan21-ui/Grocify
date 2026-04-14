@@ -1,11 +1,13 @@
+import { useGroceryStore } from '@/store/grocery-store';
 import { Show, useUser } from '@clerk/expo'
 import { useClerk } from '@clerk/expo'
 import { Link } from 'expo-router'
 import { Text, View, Pressable, StyleSheet } from 'react-native'
 
 export default function Page() {
-  const { user } = useUser()
-  const { signOut } = useClerk()
+  const { user } = useUser();
+  const { signOut } = useClerk();
+
 
   return (
     <View style={styles.container}>
@@ -14,7 +16,7 @@ export default function Page() {
         <Link href="/(auth)/sign-in">
           <Text>Sign in</Text>
         </Link>
-        <Link href="/(auth)/sign-up">
+        <Link href="/(auth)/sign-in">
           <Text>Sign up</Text>
         </Link>
       </Show>
