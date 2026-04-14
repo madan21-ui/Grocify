@@ -21,9 +21,10 @@
       "package": "com.anonymous.gro"
     },
     "web": {
-      "output": "static",
+      "output": "server",
       "favicon": "./assets/images/favicon.png",
-      "bundler": "metro"
+      "bundler": "metro"  
+      
     },
     "plugins": [
       "@clerk/expo",
