@@ -1,10 +1,14 @@
 import { useAuth } from '@clerk/expo'
 import { Redirect, Stack } from 'expo-router'
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
+import { useColorScheme } from 'react-native';
 
 export default function TabsLayout() {
-  const { isSignedIn, isLoaded } = useAuth()
+  const { isSignedIn, isLoaded } = useAuth();
 
+  const {colorScheme} = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  const tabTinColor = isDark ? "hsl(142 70% 54%)" : "hsl(147 75% 33%)";
   if (!isLoaded) {
     return null
   }
@@ -13,14 +17,14 @@ export default function TabsLayout() {
     return <Redirect href="/(auth)/sign-in" />
   }
 
-  return <NativeTabs>
+  return <NativeTabs tintColor={tabTinColor}>
     <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="list.bullet.clipboard" md="list" />
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="planner">
-        <NativeTabs.Trigger.Icon sf={{ default: "plus.circle" , selected : "plus.circle.fill" }} /> //md for android and sf for ios
+        <NativeTabs.Trigger.Icon sf="plus.circle" md="add"  /> //md for android and sf for ios
         <NativeTabs.Trigger.Label>Planner</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
 
