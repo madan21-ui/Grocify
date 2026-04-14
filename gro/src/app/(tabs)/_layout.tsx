@@ -21,6 +21,7 @@ export default function TabsLayout() {
     <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="list.bullet.clipboard" md="list" />
+        <NativeTabs.Trigger.Badge>9+</NativeTabs.Trigger.Badge>
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="planner">
