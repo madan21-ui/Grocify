@@ -61,7 +61,26 @@ export const useGroceryStore = create<GroceryStore>((set , get) => ({
             set({ isLoading: false });
         }
     },
-    addItem: async (input) => {},
+    addItem: async (input) => {
+        set({ error: null });
+
+        try {
+            const res = await fetch('/api/items', {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    name: input.name,
+                    quantity: Math.max(1, input.quantity),
+                    category: input.category,
+                    priority: input.priority,
+                })
+            });
+            const payload = (await res.json()) as ItemResponse;
+             if(!res.ok) throw new Error(`Request failed ( ${res.status}) `);
+        } catch (error) {
+            
+        }
+    },
     updateQuantity: async (id, quantity) => {},
     togglepurchased: async (id) => {},
     removeItem: async (id) => {},
