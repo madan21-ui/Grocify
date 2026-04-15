@@ -110,7 +110,53 @@ export const useGroceryStore = create<GroceryStore>((set , get) => ({
 
 
     },
-    togglepurchased: async (id) => {},
-    removeItem: async (id) => {},
-    clearPurchased: async () => {}
+    togglepurchased: async (id) => {
+        const currentItem = get().items.find((item) => item.id === id);
+    if (!currentItem) return;
+
+    const nextPurchased = !currentItem.purchased;
+    set({ error: null });
+    try {
+      const res = await fetch(`/api/items/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ purchased: nextPurchased }),
+      });
+
+      const payload = (await res.json()) as ItemResponse;
+      if (!res.ok) throw new Error(`Request failed (${res.status})`);
+
+      set((state) => ({
+        items: state.items.map((item) => (item.id === id ? payload.item : item)),
+      }));
+    } catch (error) {
+      console.error("Error toggling purchased:", error);
+      set({ error: "Something went wrong" });
+    }
+    },
+    removeItem: async (id) => {
+        set({ error: null });
+    try {
+      const res = await fetch(`/api/items/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error(`Request failed (${res.status})`);
+
+      set((state) => ({ items: state.items.filter((item) => item.id !== id) }));
+    } catch (error) {
+      console.error("Error removing item:", error);
+      set({ error: "Something went wrong" });
+    }
+    },
+    clearPurchased: async () => {
+        set({ error: null });
+    try {
+      const res = await fetch("/api/items/clear-purchased", { method: "POST" });
+      if (!res.ok) throw new Error(`Request failed (${res.status})`);
+
+      const items = get().items.filter((item) => !item.purchased);
+      set({ items });
+    } catch (error) {
+      console.error("Error clearing purchased:", error);
+      set({ error: "Something went wrong" });
+    }
+    }
 }));
