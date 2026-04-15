@@ -85,7 +85,31 @@ export const useGroceryStore = create<GroceryStore>((set , get) => ({
             set({ error: "Something went wrong" });
         }
     },
-    updateQuantity: async (id, quantity) => {},
+    updateQuantity: async (id, quantity) => {
+        const nextQuantity = Math.max(1, quantity);
+        set({ error: null });
+
+
+        try {
+            const res = await fetch(`/api/items/${id}`, {
+                method: 'PATCH',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ quantity: nextQuantity }),
+            });
+            const payload = (await res.json()) as ItemResponse;
+             if(!res.ok) throw new Error(`Request failed ( ${res.status}) `);
+
+             set((state) => ({
+                 items: state.items.map((item) => (item.id === id ? payload.item : item)),
+                }));
+           
+        } catch (error) {
+            console.error("Failed to add item", error);
+            set({ error: "Something went wrong" });
+        }
+
+
+    },
     togglepurchased: async (id) => {},
     removeItem: async (id) => {},
     clearPurchased: async () => {}
