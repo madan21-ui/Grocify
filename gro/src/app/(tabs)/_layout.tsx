@@ -18,7 +18,7 @@ export default function TabsLayout() {
     loadItems();
   }, []);
 
-  console.log("ITEMS: ",items);
+
 
   if (!isLoaded) {
     return null
