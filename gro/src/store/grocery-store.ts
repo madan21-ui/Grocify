@@ -77,8 +77,12 @@ export const useGroceryStore = create<GroceryStore>((set , get) => ({
             });
             const payload = (await res.json()) as ItemResponse;
              if(!res.ok) throw new Error(`Request failed ( ${res.status}) `);
+
+             set((state) => ({ items: [payload.item,...state.items] }));
+             return payload.item;
         } catch (error) {
-            
+            console.error("Failed to add item", error);
+            set({ error: "Something went wrong" });
         }
     },
     updateQuantity: async (id, quantity) => {},
