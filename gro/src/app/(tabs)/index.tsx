@@ -2,6 +2,7 @@ import { TabScreenBackground } from '@/components/TabScreenBackground';
 import { useGroceryStore } from '@/store/grocery-store';
 import { Text, View,  ScrollView } from 'react-native'
 import ListHeroCard from '@/components/list/ListHeroCard';
+import PendingItemCard from '@/components/PendingItemsCard';
 
 
 export default function ListScreen() {
@@ -27,8 +28,8 @@ export default function ListScreen() {
       </View>
 
       {pendingItems.map((item) => (
-        <PendingItemsCard key={item.id} item={item} />
-      ))};
+        <PendingItemCard key={item.id} item={item} />
+      ))}
     </ScrollView>
   );
 }
