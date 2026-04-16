@@ -15,6 +15,10 @@ const ListHeroCard = () => {
 
       <Text className='mt-1 text-3xl font-extrabold text-primary-foreground'> Your Grocery Board</Text>
       <Text className='mt-1 text-sm text-primary-foreground/80'> {pendingCount} pending {completedCount} completed </Text>
+      <View className="mt-4 overflow-hidden rounded-full bg-white/50">
+        <View className="h-2 rounded-full bg-secondary" style={{ width: `${completionRate}%` }} />
+      </View>
+
     </View>
   )
 }
