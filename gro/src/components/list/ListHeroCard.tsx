@@ -9,9 +9,9 @@ const ListHeroCard = () => {
     const pendingCount = items.length - completedCount;
     const completionRate = items.length ? Math.round((completedCount / items.length) * 100) : 0;
   return (
-    <View className='rouded-3xl bg-primary p-5'>
+    <View className='rounded-3xl bg-primary p-5'>
       <Text className="text-sm font-semibold uppercase tracking-[1px] text-primary-foreground/70"
-      >Madan</Text>
+      >Today</Text>
 
       <Text className='mt-1 text-3xl font-extrabold text-primary-foreground'> Your Grocery Board</Text>
       <Text className='mt-1 text-sm text-primary-foreground/80'> {pendingCount} pending {completedCount} completed </Text>
