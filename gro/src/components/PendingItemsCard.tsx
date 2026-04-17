@@ -15,14 +15,14 @@ const priorityPillText = {
 };
 
 const PendingItemCard = ({ item }: { item: GroceryItem }) => {
-  const { removeItem, updateQuantity, togglePurchased } = useGroceryStore();
+  const { removeItem, updateQuantity, togglepurchased } = useGroceryStore();
 
   return (
     <View className="rounded-3xl border border-border bg-card p-4">
       <View className="flex-row items-start gap-3">
         <Pressable
           className="mt-1 size-6 items-center justify-center rounded-full border-2 border-border bg-card"
-          onPress={() => togglePurchased(item.id)}
+          onPress={() => togglepurchased(item.id)}
         ></Pressable>
 
         <View className="flex-1">
