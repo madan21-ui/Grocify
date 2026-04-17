@@ -3,7 +3,7 @@ import { useGroceryStore } from '@/store/grocery-store';
 import { Text, View,  ScrollView } from 'react-native'
 import ListHeroCard from '@/components/list/ListHeroCard';
 import PendingItemCard from '@/components/PendingItemsCard';
-
+import CompletedItems from '@/components/list/CompletedItems ';
 
 export default function ListScreen() {
 
@@ -30,6 +30,8 @@ export default function ListScreen() {
       {pendingItems.map((item) => (
         <PendingItemCard key={item.id} item={item} />
       ))}
+
+      <CompletedItems/>
     </ScrollView>
   );
 }
