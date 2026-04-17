@@ -26,8 +26,19 @@ const PendingItemsCard = ({item}:{item:GroceryItem}) => {
       <View className='flex-row items-start gap-3'>
         <Pressable 
         className="mt-1 size-6 items-center justify-center rounded-full border-2 border-border bg-card " onPress={() => togglepurchased(item.id)}>
-          <FontAwesome6 name="minus" size={12} color="#3b5a4a" />
         </Pressable>
+
+         <View className="flex-1">
+          <View className="flex-row items-center justify-between gap-2">
+            <Text className="flex-1 text-lg font-semibold text-card-foreground">{item.name}</Text>
+            <View className={`rounded-full px-3 py-1 ${priorityPillBg[item.priority]}`}>
+              <Text className={`text-xs font-bold uppercase ${priorityPillText[item.priority]}`}>
+                {item.priority}
+              </Text>
+            </View>
+          </View>
+          </View>
+        
       </View>
     </View>
   ) 
