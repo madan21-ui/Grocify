@@ -1,7 +1,6 @@
-import { View, Text, Pressable } from 'react-native'
-import React from 'react'
-import { GroceryItem, useGroceryStore } from '@/store/grocery-store'
-import { FontAwesome6 } from '@expo/vector-icons';
+import { GroceryItem, useGroceryStore } from "@/store/grocery-store";
+import { FontAwesome6 } from "@expo/vector-icons";
+import { Pressable, Text, View } from "react-native";
 
 const priorityPillBg = {
   low: "bg-priority-low",
@@ -15,20 +14,18 @@ const priorityPillText = {
   high: "text-priority-high-foreground",
 };
 
+const PendingItemCard = ({ item }: { item: GroceryItem }) => {
+  const { removeItem, updateQuantity, togglePurchased } = useGroceryStore();
 
-
-const PendingItemsCard = ({item}:{item:GroceryItem}) => {
-    const {removeItem,updateQuantity, togglepurchased} = useGroceryStore();
-
-    
   return (
     <View className="rounded-3xl border border-border bg-card p-4">
-      <View className='flex-row items-start gap-3'>
-        <Pressable 
-        className="mt-1 size-6 items-center justify-center rounded-full border-2 border-border bg-card " onPress={() => togglepurchased(item.id)}>
-        </Pressable>
+      <View className="flex-row items-start gap-3">
+        <Pressable
+          className="mt-1 size-6 items-center justify-center rounded-full border-2 border-border bg-card"
+          onPress={() => togglePurchased(item.id)}
+        ></Pressable>
 
-         <View className="flex-1">
+        <View className="flex-1">
           <View className="flex-row items-center justify-between gap-2">
             <Text className="flex-1 text-lg font-semibold text-card-foreground">{item.name}</Text>
             <View className={`rounded-full px-3 py-1 ${priorityPillBg[item.priority]}`}>
@@ -36,7 +33,6 @@ const PendingItemsCard = ({item}:{item:GroceryItem}) => {
                 {item.priority}
               </Text>
             </View>
-          </View>
           </View>
 
           <View className="mt-2 flex-row items-center gap-2">
@@ -66,21 +62,17 @@ const PendingItemsCard = ({item}:{item:GroceryItem}) => {
               <FontAwesome6 name="plus" size={12} color="#3b5a4a" />
             </Pressable>
           </View>
+        </View>
 
-
-          <Pressable
+        <Pressable
           className="h-9 w-9 items-center justify-center rounded-xl bg-destructive"
           onPress={() => removeItem(item.id)}
         >
           <FontAwesome6 name="trash" size={13} color="#d45f58" />
         </Pressable>
-
-        
-        </View>
-        
       </View>
-    
-  ) 
-}
+    </View>
+  );
+};
 
-export default PendingItemsCard
+export default PendingItemCard;
