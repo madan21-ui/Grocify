@@ -38,6 +38,14 @@ const PendingItemsCard = ({item}:{item:GroceryItem}) => {
             </View>
           </View>
           </View>
+
+          <View className="mt-2 flex-row items-center gap-2">
+            <View className="rounded-full bg-secondary px-3 py-1">
+              <Text className="text-xs font-semibold text-secondary-foreground">
+                {item.category}
+              </Text>
+            </View>
+          </View>
         
       </View>
     </View>
