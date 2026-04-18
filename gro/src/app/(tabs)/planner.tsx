@@ -4,6 +4,8 @@ import { useGroceryStore } from '@/store/grocery-store';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TabScreenBackground } from '@/components/TabScreenBackground';
 import { FontAwesome6 } from '@expo/vector-icons';
+import  PlannerHeroImage from '@/components/planner/PlannerHeroImage';
+
 
 const plannerScreen = () => {
 
@@ -68,6 +70,9 @@ const plannerScreen = () => {
 
       </View>
     </View>
+
+     <PlannerHeroImage />
+
     </ScrollView>
   )
 }
