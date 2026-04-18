@@ -16,7 +16,7 @@ export default function ListScreen() {
   return (
     < ScrollView className='flex-1 bg-background py-4 '
     showsVerticalScrollIndicator={false}
-    contentContainerStyle={{ padding: 20 , gap: 14}}
+    contentContainerStyle={{ gap: 14}}
     >
      <TabScreenBackground />
      <ListHeroCard/>
@@ -32,6 +32,7 @@ export default function ListScreen() {
       data={pendingItems}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => <PendingItemCard item={item} />}
+      contentContainerStyle={{ padding: 20 , gap: 14}}
       />
      
 
