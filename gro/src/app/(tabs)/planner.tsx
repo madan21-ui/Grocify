@@ -3,6 +3,7 @@ import React from 'react'
 import { useGroceryStore } from '@/store/grocery-store';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TabScreenBackground } from '@/components/TabScreenBackground';
+import { FontAwesome6 } from '@expo/vector-icons';
 
 const plannerScreen = () => {
 
@@ -21,7 +22,7 @@ const plannerScreen = () => {
     >
      <TabScreenBackground/>
 
-     <View className='gap-4 rounded-3x1 border border-border bg-card/70 p-5'>
+     <View className='gap-4 rounded-3xl border border-border bg-card/70 p-5'>
      <View className='flex-row items-start justify-between'>
       
       
@@ -37,9 +38,36 @@ const plannerScreen = () => {
             </Text>
         </View>
 
-        
+        <View className="h-12 w-12 items-center justify-center rounded-2xl bg-primary">
+            <FontAwesome6 name="wand-magic-sparkles" size={18} color="#ffffff" />
+        </View>
      </View>
-     </View>
+
+
+      <View className="flex-row gap-2">
+         <View className="flex-1 rounded-2xl border border-border bg-background/80 p-3">
+            <Text className="text-xs font-medium uppercase tracking-[1px] text-muted-foreground">
+              Pending
+            </Text>
+            <Text className="mt-1 text-xl font-bold text-foreground">{pendingCount}</Text>
+          </View>
+
+          <View className="flex-1 rounded-2xl border border-border bg-background/80 p-3">
+            <Text className="text-xs font-medium uppercase tracking-[1px] text-muted-foreground">
+              High Priority
+            </Text>
+            <Text className="mt-1 text-xl font-bold text-foreground">{highPriorityCount}</Text>
+          </View>
+
+          <View className="flex-1 rounded-2xl border border-border bg-background/80 p-3">
+            <Text className="text-xs font-medium uppercase tracking-[1px] text-muted-foreground">
+              Units
+            </Text>
+            <Text className="mt-1 text-xl font-bold text-foreground">{totalCount}</Text>
+          </View>
+
+      </View>
+    </View>
     </ScrollView>
   )
 }
