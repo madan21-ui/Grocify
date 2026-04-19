@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable } from 'react-native'
+import { View, Text, TextInput, Pressable, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { GroceryCategory, GroceryPriority, useGroceryStore } from '@/store/grocery-store';
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -40,6 +40,8 @@ export default function PlannerFormCard() {
       priority,
       quantity: Number(quantity),
     });
+    //optional
+    //Alert.alert("Success", "Item added to your grocery list!", [{ text: "OK" }]);
 
     //reset form as initial state
     setName("");
@@ -167,5 +169,6 @@ export default function PlannerFormCard() {
 
 
     </View>
-  )
-}
+  );
+};
+

@@ -6,6 +6,7 @@ import { TabScreenBackground } from '@/components/TabScreenBackground';
 import { FontAwesome6 } from '@expo/vector-icons';
 import  PlannerHeroImage from '@/components/planner/PlannerHeroImage';
 import PlannerFormCard from '@/components/planner/PlannerFormCard';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 
 
 const plannerScreen = () => {
@@ -18,7 +19,7 @@ const plannerScreen = () => {
     const totalCount = items.filter((item) => !item.purchased)
     .reduce((sum, item) => sum + item.quantity, 0);
   return (
-    <ScrollView className='flex-1 bg-background py-4'
+    <KeyboardAwareScrollView className='flex-1 bg-background py-4'
     contentInsetAdjustmentBehavior="always"
     showsVerticalScrollIndicator={false}
     contentContainerStyle={{ padding: 20 , gap: 14}}
@@ -85,7 +86,7 @@ const plannerScreen = () => {
 
       <PlannerFormCard />
 
-    </ScrollView>
+    </KeyboardAwareScrollView >
   )
 }
 
