@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { GroceryCategory, GroceryPriority, useGroceryStore } from '@/store/grocery-store';
 import { FontAwesome6 } from '@expo/vector-icons';
 const categories:GroceryCategory[] = ["produce", "dairy", "snacks", "bakery", "pantry", "meat", "beverages", "household"];
+
+
 const priorities:GroceryPriority[] = ["low","medium","high"];
 
 const categoryIcon ={
@@ -79,6 +81,7 @@ export default function PlannerFormCard() {
              />
             </View>
 
+         {/* CATEGORY */}
             <Text className="mt-4 text-sm font-semibold text-foreground">Category</Text>
                 <View className="mt-2 flex-row flex-wrap gap-2">
                  {categories.map((option) => {
@@ -105,8 +108,62 @@ export default function PlannerFormCard() {
                         </Text>
                         </Pressable>
                     );
+        })};
+      </View>
+
+
+       {/* PRIORITY */}
+      <Text className="mt-4 text-sm font-semibold text-foreground">Priority</Text>
+      <View className="mt-2 flex-row gap-2">
+        {priorities.map((option) => {
+          const active = option === priority;
+          const icon = option === "high" ? "bolt" : option === "medium" ? "compass" : "seedling";
+          return (
+            <Pressable
+              key={option}
+              onPress={() => setPriority(option)}
+              className={`flex-1 flex-row items-center justify-center gap-2 rounded-2xl py-2 ${
+                active ? "bg-primary" : "bg-secondary"
+              }`}
+            >
+              <FontAwesome6 name={icon} size={12} color={active ? "#ffffff" : "#486856"} />
+              <Text
+                className={`mt-1 text-sm font-semibold capitalize ${
+                  active ? "text-primary-foreground" : "text-secondary-foreground"
+                }`}
+              >
+                {option}
+              </Text>
+            </Pressable>
+          );
         })}
       </View>
+
+      <Pressable
+        className={`mt-5 flex-row items-center justify-center rounded-2xl py-3 ${
+          canCreate ? "bg-primary" : "bg-muted"
+        }`}
+        onPress={createItem}
+        disabled={!canCreate}
+      >
+        <FontAwesome6 name="plus" size={14} color={canCreate ? "#ffffff" : "#7a9386"} />
+        <Text
+          className={`ml-2 text-base font-semibold ${
+            canCreate ? "text-primary-foreground" : "text-muted-foreground"
+          }`}
+        >
+          Add to Grocery List
+        </Text>
+      </Pressable>
+
+      {error ? (
+        <View className="mt-3 rounded-2xl border border-destructive bg-destructive px-3 py-2">
+          <Text className="text-sm text-white text-center uppercase">{error}</Text>
+        </View>
+      ) : null}
+      
+
+
 
 
     </View>
