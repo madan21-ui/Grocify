@@ -1,7 +1,7 @@
-import { View, Text } from 'react-native'
+import { View, Text, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { GroceryCategory, GroceryPriority, useGroceryStore } from '@/store/grocery-store';
-
+import { FontAwesome6 } from '@expo/vector-icons';
 const categories:GroceryCategory[] = ["produce", "dairy", "snacks", "bakery", "pantry", "meat", "beverages", "household"];
 const priorities:GroceryPriority[] = ["low","medium","high"];
 
@@ -41,12 +41,23 @@ export default function PlannerFormCard() {
     setPriority("medium");
     };
 
-
+    console.log(name);
 
   return (
-    <View className="rounded-3xl   border-border bg-card p-4">
+    <View className="rounded-3xl border  border-border bg-card p-4">
       <Text className='text-sm font-semibol text-foreground'>Item name</Text>
-      <View className='mt-2 flex-row items-center rounded-2xl border border-input bg-muted px-4 py-3'></View>
+      <View className='mt-2 flex-row items-center rounded-2xl border border-input bg-muted px-4 py-3'>
+        <FontAwesome6 name="bag-shopping" size={13} color="#5b7567" />
+      <TextInput
+        value={name}
+        onChangeText={setName}
+        placeholder="Ex: Strawberries"
+        className='ml-2 flex-1 text-base text-foreground'
+        placeholderTextColor="#8aa397"
+      />
+     
+      
+      </View>
     </View>
   )
 }
