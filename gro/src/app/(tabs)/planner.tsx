@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { TabScreenBackground } from '@/components/TabScreenBackground';
 import { FontAwesome6 } from '@expo/vector-icons';
 import  PlannerHeroImage from '@/components/planner/PlannerHeroImage';
+import PlannerFormCard from '@/components/planner/PlannerFormCard';
 
 
 const plannerScreen = () => {
@@ -81,6 +82,8 @@ const plannerScreen = () => {
           Add items with the right quantity, category, and urgency.
         </Text>
       </View>
+
+      <PlannerFormCard />
 
     </ScrollView>
   )

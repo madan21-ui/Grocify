@@ -3,7 +3,7 @@
 import { create } from 'zustand';
 
 
-export type GroceryCategory = "fruits" | "vegetables" | "dairy" | "meat" | "bakery" | "beverages" | "snacks" | "household";
+export type GroceryCategory = "produce" | "vegetables" | "dairy" | "meat" | "bakery" | "beverages" | "snacks" | "household" | "pantry";
 export type GroceryPriority = "low" | "medium" | "high";
 export type GroceryItem = {
     id: string;
