@@ -44,8 +44,9 @@ export default function PlannerFormCard() {
 
 
   return (
-    <View>
-      <Text>PlannerFormCard</Text>
+    <View className="rounded-3xl   border-border bg-card p-4">
+      <Text className='text-sm font-semibol text-foreground'>Item name</Text>
+      <View className='mt-2 flex-row items-center rounded-2xl border border-input bg-muted px-4 py-3'></View>
     </View>
   )
 }
