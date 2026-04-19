@@ -3,7 +3,7 @@ import React from 'react'
 import { useClerk, useUser } from '@clerk/expo';
 import { FontAwesome6 } from '@expo/vector-icons';
 
-const userProfile = () => {
+const UserProfile = () => {
 
 
   const {signOut} = useClerk();
@@ -39,4 +39,4 @@ const userProfile = () => {
   )
 }
 
-export default userProfile
+export default UserProfile

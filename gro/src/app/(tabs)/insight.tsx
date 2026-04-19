@@ -1,8 +1,8 @@
 import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import { TabScreenBackground } from '@/components/TabScreenBackground'
-import UserProfile from '@/components/insight/userProfile';
 import { useClerk, useUser } from '@clerk/expo';
+import UserProfile from '@/components/insight/UserProfile';
 
 const insightScreen = () => {
   return (
