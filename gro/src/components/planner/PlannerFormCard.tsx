@@ -34,6 +34,13 @@ export default function PlannerFormCard() {
       quantity: Number(quantity),
     });
 
+    //reset form as initial state
+    setName("");
+    setQuantity("1");
+    setCategory("produce");
+    setPriority("medium");
+    };
+
 
 
   return (
