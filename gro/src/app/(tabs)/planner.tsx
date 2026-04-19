@@ -73,6 +73,15 @@ const plannerScreen = () => {
 
      <PlannerHeroImage />
 
+     <View className="px-1">
+        <Text className="text-sm font-semibold uppercase tracking-[1px] text-muted-foreground">
+          Build your list
+        </Text>
+        <Text className="mt-1 text-sm text-muted-foreground">
+          Add items with the right quantity, category, and urgency.
+        </Text>
+      </View>
+
     </ScrollView>
   )
 }
