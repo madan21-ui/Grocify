@@ -3,6 +3,7 @@ import React from 'react'
 import { TabScreenBackground } from '@/components/TabScreenBackground'
 import { useClerk, useUser } from '@clerk/expo';
 import UserProfile from '@/components/insight/UserProfile';
+import InsightsStatsSection from '@/components/insight/InsightsStatsSection';
 
 const insightScreen = () => {
   return (
@@ -15,6 +16,8 @@ const insightScreen = () => {
      <TabScreenBackground/>
 
      <UserProfile />
+
+     <InsightsStatsSection />
 
     </ScrollView>
   );
