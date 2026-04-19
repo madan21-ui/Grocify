@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, Pressable } from 'react-native'
 import React, { useState } from 'react'
 import { GroceryCategory, GroceryPriority, useGroceryStore } from '@/store/grocery-store';
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -10,7 +10,12 @@ const categoryIcon ={
         dairy: "cow",
         snacks: "cookie-bite",
         bakery: "bread-slice",
-        pantry: "boxx-open"
+        pantry: "box-open",
+        vegetables: "carrot",
+        meat: "drumstick-bite",
+        beverages: "mug-saucer",
+        household: "house"
+
     };
 export default function PlannerFormCard() {
     const { error, addItem } = useGroceryStore();
@@ -21,7 +26,7 @@ export default function PlannerFormCard() {
     const [ priority, setPriority ] = useState<GroceryPriority>("medium");
 
     const canCreate = name.trim().length > 0 ;
-    const handleQuantityChang = (value:string) =>{
+    const handleQuantityChange = (value:string) =>{
         // this regex is used to remove all non-numeric characters from the input
         setQuantity(value.replace(/[^0-9]/g, ""));
     };
@@ -41,11 +46,11 @@ export default function PlannerFormCard() {
     setPriority("medium");
     };
 
-    console.log(name);
 
   return (
     <View className="rounded-3xl border  border-border bg-card p-4">
       <Text className='text-sm font-semibol text-foreground'>Item name</Text>
+      {/* ITEM NAME */}
       <View className='mt-2 flex-row items-center rounded-2xl border border-input bg-muted px-4 py-3'>
         <FontAwesome6 name="bag-shopping" size={13} color="#5b7567" />
       <TextInput
@@ -58,6 +63,52 @@ export default function PlannerFormCard() {
      
       
       </View>
+        
+        
+       {/* QUANTITY */}
+         <Text className="mt-4 text-sm font-semibold text-foreground">Quantity</Text>
+            <View className="mt-2 flex-row items-center rounded-2xl border border-border bg-muted px-4 py-3">
+            <FontAwesome6 name="hashtag" size={13} color="#5b7567" />
+            <TextInput
+          value={quantity}
+          onChangeText={handleQuantityChange}
+          keyboardType="number-pad" // this ensures that the numeric keyboard is shown on mobile devices
+          placeholder="1"
+          placeholderTextColor="#8aa397"
+          className="ml-3 flex-1 text-base text-foreground"
+             />
+            </View>
+
+            <Text className="mt-4 text-sm font-semibold text-foreground">Category</Text>
+                <View className="mt-2 flex-row flex-wrap gap-2">
+                 {categories.map((option) => {
+                     const active = option === category;
+                    return (
+                        <Pressable
+                        key={option}
+                        onPress={() => setCategory(option)}
+                        className={`flex-row items-center rounded-full px-4 py-2 ${
+                        active ? "bg-primary" : "bg-secondary"
+                        }`}
+                        >
+                        <FontAwesome6
+                        name={categoryIcon[option]}
+                        size={12}
+                        color={active ? "#fff" : "#486856"}
+                        />
+                        <Text
+                        className={`ml-2 text-sm font-semibold ${
+                         active ? "text-primary-foreground" : "text-secondary-foreground"
+                        }`}
+                        >
+                        {option}
+                        </Text>
+                        </Pressable>
+                    );
+        })}
+      </View>
+
+
     </View>
   )
 }
