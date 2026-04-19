@@ -110,7 +110,7 @@ export default function PlannerFormCard() {
                         </Text>
                         </Pressable>
                     );
-        })};
+        })}
       </View>
 
 
