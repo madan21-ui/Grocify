@@ -13,18 +13,12 @@ if (!publishableKey) {
   throw new Error('Add your Clerk Publishable Key to the .env file')
 }
 
-
-
 Sentry.init({
   dsn: 'https://039a51040bf9e4703e8f0e7b00a3cf28@o4511250976997376.ingest.us.sentry.io/4511251019464704',
-
   integrations: [Sentry.feedbackIntegration()],
-
-  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
-  // spotlight: __DEV__,
 });
 
-export default Sentry.wrap(function RootLayout() {
+export default function RootLayout() {
   const colorScheme = useColorScheme();
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
@@ -35,4 +29,4 @@ export default Sentry.wrap(function RootLayout() {
       </KeyboardProvider>
     </ClerkProvider>
   )
-});
+};

@@ -1,7 +1,7 @@
 import { FontAwesome6 } from "@expo/vector-icons";
+import * as Sentry from "@sentry/react-native";
 import { Pressable, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import * as Sentry from '@sentry/react-native';
 
 const SentryFeedbackButton = () => {
   const insets = useSafeAreaInsets();
