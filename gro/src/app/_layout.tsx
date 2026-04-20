@@ -24,7 +24,7 @@ Sentry.init({
   // spotlight: __DEV__,
 });
 
-export default function RootLayout() {
+export default Sentry.wrap(function RootLayout() {
   const colorScheme = useColorScheme();
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
@@ -35,4 +35,4 @@ export default function RootLayout() {
       </KeyboardProvider>
     </ClerkProvider>
   )
-} 
+});
