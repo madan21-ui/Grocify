@@ -6,7 +6,7 @@ import UserProfile from '@/components/insight/UserProfile';
 import InsightsStatsSection from '@/components/insight/InsightsStatsSection';
 import InsightsCategorySection from '@/components/insight/InsightsCategorySection';
 import InsightsPrioritySection from '@/components/insight/InsightsPrioritySection';
-
+import ClearCompletedButton from '@/components/insight/ClearCompletedButton';
 
 
 const insightScreen = () => {
@@ -24,6 +24,7 @@ const insightScreen = () => {
      <InsightsStatsSection />
      <InsightsCategorySection />
      <InsightsPrioritySection />
+     <ClearCompletedButton />
 
     </ScrollView>
   );
