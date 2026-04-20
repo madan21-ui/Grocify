@@ -1,8 +1,10 @@
 import { useGroceryStore } from "@/store/grocery-store";
 import { Text, View } from "react-native";
 
-const categoryColors: Record<string, string> = {
+const categoryColors: Record<string, string> = { 
+    //Record<string, string> is optional but for best practices & ts need it, it is good to specify the type of the object. It indicates that the keys are strings (category names) and the values are also strings (color codes).
   Produce: "#74c49a",
+  //produce = string, "#74c49a" = string that is why <string, string> is used in Record<string, string>
   Dairy: "#8ec5ff",
   Bakery: "#f3bc84",
   Pantry: "#b69cff",
