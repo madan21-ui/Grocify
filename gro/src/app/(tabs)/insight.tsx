@@ -5,6 +5,9 @@ import { useClerk, useUser } from '@clerk/expo';
 import UserProfile from '@/components/insight/UserProfile';
 import InsightsStatsSection from '@/components/insight/InsightsStatsSection';
 import InsightsCategorySection from '@/components/insight/InsightsCategorySection';
+import InsightsPrioritySection from '@/components/insight/InsightsPrioritySection';
+
+
 
 const insightScreen = () => {
   return (
@@ -20,6 +23,7 @@ const insightScreen = () => {
 
      <InsightsStatsSection />
      <InsightsCategorySection />
+     <InsightsPrioritySection />
 
     </ScrollView>
   );
