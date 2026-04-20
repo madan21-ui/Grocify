@@ -15,7 +15,7 @@ if (!publishableKey) {
 
 Sentry.init({
   dsn: 'https://039a51040bf9e4703e8f0e7b00a3cf28@o4511250976997376.ingest.us.sentry.io/4511251019464704',
-  integrations: [Sentry.feedbackIntegration()],
+  //integrations: [Sentry.feedbackIntegration()],
 });
 
 export default function RootLayout() {
