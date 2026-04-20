@@ -7,6 +7,7 @@ import InsightsStatsSection from '@/components/insight/InsightsStatsSection';
 import InsightsCategorySection from '@/components/insight/InsightsCategorySection';
 import InsightsPrioritySection from '@/components/insight/InsightsPrioritySection';
 import ClearCompletedButton from '@/components/insight/ClearCompletedButton';
+import SentryFeedbackButton from '@/components/insight/src/components/insights/SentryFeedbackButton';
 
 
 const insightScreen = () => {
@@ -25,6 +26,7 @@ const insightScreen = () => {
      <InsightsCategorySection />
      <InsightsPrioritySection />
      <ClearCompletedButton />
+     <SentryFeedbackButton />
 
     </ScrollView>
   );
