@@ -4,6 +4,7 @@ import { TabScreenBackground } from '@/components/TabScreenBackground'
 import { useClerk, useUser } from '@clerk/expo';
 import UserProfile from '@/components/insight/UserProfile';
 import InsightsStatsSection from '@/components/insight/InsightsStatsSection';
+import InsightsCategorySection from '@/components/insight/InsightsCategorySection';
 
 const insightScreen = () => {
   return (
@@ -18,6 +19,7 @@ const insightScreen = () => {
      <UserProfile />
 
      <InsightsStatsSection />
+     <InsightsCategorySection />
 
     </ScrollView>
   );
