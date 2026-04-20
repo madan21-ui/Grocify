@@ -23,8 +23,7 @@
     "web": {
       "output": "server",
       "favicon": "./assets/images/favicon.png",
-      "bundler": "metro"  
-      
+      "bundler": "metro"
     },
     "plugins": [
       "@clerk/expo",
@@ -40,7 +39,15 @@
         }
       ],
       "expo-secure-store",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "grocify",
+          "organization": "student-1on"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
