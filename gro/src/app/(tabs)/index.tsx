@@ -23,7 +23,7 @@ export default function ListScreen() {
       contentInsetAdjustmentBehavior="automatic"
       contentContainerStyle={{ padding: 20 , gap: 14}}
       ListHeaderComponent={
-        <View style={{ gap: 14 , marginTop: 20}}>
+        <View style={{ gap: 14 , paddingTop: 20}}>
           <TabScreenBackground/>
           <ListHeroCard/>
           <View className="flex-row items-center justify-between px-1">
